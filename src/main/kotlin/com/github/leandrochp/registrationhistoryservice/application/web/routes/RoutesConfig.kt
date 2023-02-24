@@ -48,17 +48,19 @@ object RoutesConfig : KoinComponent {
                 .end(objectMapper.writeValueAsString(response))
         }
 
-        router.get("/registers").handler {
-            val queryParams = it.queryParams()
-            val response = when {
-                queryParams.contains("firstname") -> {
-                    registryHistoryController.findByFirstName(queryParams["firstname"])
-                }
-                queryParams.contains("lastname") -> {
-                    registryHistoryController.findByLastName(queryParams["lastname"])
-                }
-                else -> registryHistoryController.findAll()
-            }
+        router.get("/registers/first-name/:firstname").handler {
+            val firstname = it.pathParam("firstname")
+            val response = registryHistoryController.findByFirstName(firstname)
+
+            it.response()
+                .setStatusCode(HttpResponseStatus.OK.code())
+                .putHeader(CONTENT_TYPE, APPLICATION_JSON_CHARSET_UTF_8)
+                .end(objectMapper.writeValueAsString(response))
+        }
+
+        router.get("/registers/last-name/:lastname").handler {
+            val lastName = it.pathParam("lastName")
+            val response = registryHistoryController.findByLastName(lastName)
 
             it.response()
                 .setStatusCode(HttpResponseStatus.OK.code())
