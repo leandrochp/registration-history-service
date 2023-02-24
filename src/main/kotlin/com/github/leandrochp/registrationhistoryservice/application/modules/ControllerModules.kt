@@ -4,5 +4,5 @@ import com.github.leandrochp.registrationhistoryservice.application.web.controll
 import org.koin.dsl.module
 
 val controllerModules = module {
-    single { RegistrationHistoryController(get()) }
+    single { RegistrationHistoryController(get(), get()) }
 }
