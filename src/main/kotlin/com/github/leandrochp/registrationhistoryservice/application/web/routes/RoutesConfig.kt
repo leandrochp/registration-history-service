@@ -26,7 +26,7 @@ object RoutesConfig : KoinComponent {
         router.get("/health-check").handler {
             val response = healthCheckController.health()
             it.response()
-                .setStatusCode(HttpResponseStatus.CREATED.code())
+                .setStatusCode(HttpResponseStatus.OK.code())
                 .putHeader(CONTENT_TYPE, APPLICATION_JSON_CHARSET_UTF_8)
                 .end(objectMapper.writeValueAsString(response))
         }

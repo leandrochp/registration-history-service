@@ -4,13 +4,14 @@ import com.github.leandrochp.registrationhistoryservice.application.configs.Envi
 import com.github.leandrochp.registrationhistoryservice.application.modules.loadModules
 import com.github.leandrochp.registrationhistoryservice.application.web.handlers.FailureHandlerConfig
 import com.github.leandrochp.registrationhistoryservice.application.web.routes.RoutesConfig
+import com.github.leandrochp.registrationhistoryservice.domain.log.LoggableClass
 import io.vertx.core.Vertx
 import io.vertx.core.VertxOptions
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.util.concurrent.TimeUnit
 
-object Application : KoinComponent {
+object Application : KoinComponent, LoggableClass() {
 
     private val environmentVariablesConfig: EnvironmentVariablesConfig by inject()
     private val routesConfig: RoutesConfig by inject()
@@ -31,9 +32,9 @@ object Application : KoinComponent {
 
         server.requestHandler(router).listen(port) {
             if (it.succeeded()) {
-                println("registration-history-service started on port $port")
+                logger.info("registration-history-service started on port $port")
             } else {
-                println("an error occurred when trie to start registration-history-service: ${it.cause()}")
+                logger.error("an error occurred when trie to start registration-history-service: ${it.cause()}")
             }
         }
     }
