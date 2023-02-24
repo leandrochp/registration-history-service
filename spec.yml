@@ -1,0 +1,292 @@
+openapi: 3.0.0
+
+info:
+  title: Registration History Service
+  description: |
+    This API provides information about the registration history.
+  version: 1.0.0
+  contact:
+    name: Leandro Chagas Pereira
+
+tags:
+  - name: Health Check
+    description: |
+      Endpoint to check the health of service
+  - name: Registry History
+    description: |
+      Endpoint to context of registration history
+
+servers:
+  - url: http://localhost:{port}
+    description: local environment
+    variables:
+      port:
+        default: '7000'
+paths:
+  /health-check:
+    get:
+      summary: Health check
+      description: |
+        Health check of registration history service
+      tags:
+        - Health Check
+
+      responses:
+        200:
+          description: Health check of registration history service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+        404:
+          description: Registry history not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryNotFoundException'
+
+  /registers:
+    post:
+      summary: Create a registration history
+      description: |
+        Create a registry history
+      tags:
+        - Registry History
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistryHistoryRequest'
+      responses:
+        201:
+          description: Registry history created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryResponse'
+        400:
+          description: Invalid Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/InvalidRequestException'
+              examples:
+                InvalidRequestException:
+                  summary: Invalid field value in request
+                  value:
+                    api_error: INVALID_REQUEST
+                    message: The follow fields are invalids
+                    details: {"last_name": [must not be empty or null.]}
+
+    get:
+      summary: Find all registry histories on the database
+      tags:
+        - Registry History
+      description: |
+        Find all registry histories
+      responses:
+        200:
+          description: Registry histories found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryResponse'
+        404:
+          description: Registry histories not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryNotFoundException'
+
+  /registers/{id}:
+    get:
+      summary: Find registry history by id
+      description: |
+        Find by id
+      tags:
+        - Registry History
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID of the registry history to get
+
+      responses:
+        200:
+          description: Registry history found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryResponse'
+        404:
+          description: Registry history not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryNotFoundException'
+
+  /registers/first-name/{firstname}:
+    get:
+      summary: Find registry history by first name
+      tags:
+        - Registry History
+      description: |
+        Find by first name
+      parameters:
+        - in: path
+          name: firstname
+          schema:
+            type: string
+          required: true
+          description: The first name in the registry histories
+
+      responses:
+        200:
+          description: Registry histories found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryResponse'
+        404:
+          description: Registry histories not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryNotFoundException'
+
+  /registers/last-name/{lastname}:
+    get:
+      summary: Find registry history by last name
+      tags:
+        - Registry History
+      description: |
+        Find by last name
+      parameters:
+        - in: path
+          name: lastname
+          schema:
+            type: string
+          required: true
+          description: The first name in the registry histories
+
+      responses:
+        200:
+          description: Registry histories found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryResponse'
+        404:
+          description: Registry histories not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryHistoryNotFoundException'
+
+
+components:
+  schemas:
+    RegistryHistoryRequest:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: first name
+          example: John
+        last_name:
+          type: string
+          description: last name
+          example: Wick
+        age:
+          type: integer
+          description: old
+          example: 44
+        email:
+          type: string
+          description: electronic mail box
+          example: babayaga@gmail.com
+        address:
+          $ref: '#/components/schemas/AddressRequest'
+
+    AddressRequest:
+      type: object
+      properties:
+        street:
+          type: string
+          description: address
+          example: 112 Lower Horseshoe, Mill Neck
+        city:
+          type: string
+          description: city name
+          example: New York City
+        code:
+          type: string
+          description: zip code
+          example: 10052
+
+    RegistryHistoryResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: registry history's id
+          example: 01EK7R0JMR380JM0G2206QAWV4
+        first_name:
+          type: string
+          description: first name
+          example: John
+        last_name:
+          type: string
+          description: last name
+          example: Wick
+        age:
+          type: integer
+          description: old
+          example: 44
+        email:
+          type: string
+          description: electronic mail box
+          example: babayaga@gmail.com
+        address:
+          $ref: '#/components/schemas/AddressRequest'
+
+    HealthCheckResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: service's status
+          example: Ok
+        up:
+          type: boolean
+          description: service's status
+          example: true
+
+    RegistryHistoryNotFoundException:
+      type: object
+      properties:
+        api_error:
+          type: string
+          example: REGISTRY_HISTORY_NOT_FOUND
+        message:
+          type: string
+          example: 'The registry history id: {id} not found.'
+
+    InvalidRequestException:
+      type: object
+      properties:
+        api_error:
+          type: string
+          example: INVALID_REQUEST
+        message:
+          type: string
+          example: The follow fields are invalids
+        details:
+          type: array
+          items:
+            type: string
+            example: must not be empty or null.

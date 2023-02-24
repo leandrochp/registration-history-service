@@ -18,14 +18,14 @@ repositories {
 val vertxVersion = "4.3.8"
 val junitJupiterVersion = "5.9.1"
 
-val mainVerticleName = "com.example.starter.MainVerticle"
+val mainVerticleName = "com.github.leandrochp.registrationhistoryservice.application.Main"
 val launcherClassName = "io.vertx.core.Launcher"
 
 val watchForChange = "src/**/*"
 val doOnChange = "${projectDir}/gradlew classes"
 
 application {
-  mainClass.set(launcherClassName)
+  mainClass.set(mainVerticleName)
 }
 
 dependencies {
