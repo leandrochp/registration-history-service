@@ -6,7 +6,7 @@ import com.github.leandrochp.registrationhistoryservice.application.web.validato
 import org.koin.dsl.module
 
 val validatorModules = module {
-  single<Validator<ValidateRequest>> {
-    ValidateRequestValidator()
-  }
+    single<Validator<ValidateRequest>> {
+        ValidateRequestValidator()
+    }
 }
