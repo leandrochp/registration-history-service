@@ -9,7 +9,7 @@ object RegistryHistoryMock {
         id = "123",
         firstName = "John",
         lastName = "Wick",
-        document = "000.000.000-00",
+        document = "548.029.660-40",
         age = 44,
         email = "babayaga@hotelcontinental.com",
         address = Address(

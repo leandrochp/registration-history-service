@@ -7,7 +7,7 @@ import com.github.leandrochp.registrationhistoryservice.application.web.extensio
 import com.github.leandrochp.registrationhistoryservice.application.web.requests.RegistryHistoryRequest
 import org.koin.core.component.KoinComponent
 
-class ValidateRequestValidator : KoinComponent, Validator<RegistryHistoryRequest> {
+class RegistryHistoryRequestValidator : KoinComponent, Validator<RegistryHistoryRequest> {
 
     override fun validate(request: RegistryHistoryRequest): Map<String, List<String>> {
 
