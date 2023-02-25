@@ -18,7 +18,7 @@ import org.bson.Document as BsonDocument
 
 class MongoDbRegistryHistoryRepository(
     mongoClient: MongoClient,
-    private val databaseName: String,
+    databaseName: String,
     private val objectMapper: ObjectMapper
 ) : RegistryHistoryRepository, LoggableClass() {
 
