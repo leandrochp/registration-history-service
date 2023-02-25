@@ -19,8 +19,6 @@ repositories {
 }
 
 val vertxVersion = "4.3.8"
-val junitJupiterVersion = "5.9.1"
-
 val mainPkgAndClass = "com.github.leandrochp.registrationhistoryservice.application.Main"
 
 application {
@@ -48,10 +46,13 @@ dependencies {
   implementation("io.azam.ulidj:ulidj:1.0.1")
   //log
   implementation("ch.qos.logback:logback-classic:1.4.5")
+  //validations
+  implementation("br.com.caelum.stella:caelum-stella-core:2.1.6")
 
+  testImplementation("io.mockk:mockk:1.12.4")
+  testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
+  testImplementation("org.assertj:assertj-core:3.22.0")
 
-  testImplementation("io.vertx:vertx-junit5")
-  testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
 
 val compileKotlin: KotlinCompile by tasks
@@ -66,6 +67,7 @@ tasks.withType<ShadowJar> {
 }
 
 tasks.withType<Test> {
+  loadEnv(environment, file("test.env"))
   useJUnitPlatform()
 }
 

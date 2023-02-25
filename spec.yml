@@ -66,13 +66,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/RegistryHistoryResponse'
         400:
-          description: Invalid Request
+          description: Invalid Request or registry history already registered
           content:
             application/json:
               schema:
                 oneOf:
                   - $ref: '#/components/schemas/InvalidRequestException'
+                  - $ref: '#/components/schemas/RegistryHistoryAlreadyRegisteredException'
               examples:
+                RegistryHistoryAlreadyRegisteredException:
+                  summary: Registry History already registered
+                  value:
+                    api_error: REGISTRY_HISTORY_REGISTERED
+                    message: 'There is a registry history with the follow document: [{document}] already registered.'
+                    details: { }
                 InvalidRequestException:
                   summary: Invalid field value in request
                   value:
@@ -81,7 +88,7 @@ paths:
                     details: {"last_name": [must not be empty or null.]}
 
     get:
-      summary: Find all registry histories on the database
+      summary: Find all registry histories
       tags:
         - Registry History
       description: |
@@ -187,7 +194,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/RegistryHistoryNotFoundException'
 
-
 components:
   schemas:
     RegistryHistoryRequest:
@@ -201,6 +207,10 @@ components:
           type: string
           description: last name
           example: Wick
+        document:
+          type: string
+          description: document (CPF)
+          example: 000.000.000-00
         age:
           type: integer
           description: old
@@ -218,15 +228,15 @@ components:
         street:
           type: string
           description: address
-          example: 112 Lower Horseshoe, Mill Neck
+          example: 121 Lower Horseshoe, Mill Neck
         city:
           type: string
           description: city name
-          example: New York City
+          example: Long Island
         code:
           type: string
           description: zip code
-          example: 10052
+          example: 11765
 
     RegistryHistoryResponse:
       type: object
@@ -250,7 +260,7 @@ components:
         email:
           type: string
           description: electronic mail box
-          example: babayaga@gmail.com
+          example: babayaga@hotelcontinental.com
         address:
           $ref: '#/components/schemas/AddressRequest'
 
@@ -266,6 +276,15 @@ components:
           description: service's status
           example: true
 
+    RegistryHistoryAlreadyRegisteredException:
+      type: object
+      properties:
+        api_error:
+          type: string
+          example: REGISTRY_HISTORY_REGISTERED
+        message:
+          type: string
+          example: 'There is a registry history with the follow document: [{document}] already registered.'
     RegistryHistoryNotFoundException:
       type: object
       properties:
@@ -274,7 +293,7 @@ components:
           example: REGISTRY_HISTORY_NOT_FOUND
         message:
           type: string
-          example: 'The registry history id: {id} not found.'
+          example: 'The registry history id: [{id}] not found.'
 
     InvalidRequestException:
       type: object

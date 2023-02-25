@@ -1,4 +1,4 @@
-FROM gradle:5.6.2-jdk8 AS BUILD_IMAGE
+FROM gradle:7.3.2-jdk8 AS BUILD_IMAGE
 COPY . /home/source/java
 WORKDIR /home/source/java
 
@@ -18,7 +18,7 @@ RUN chown -R $APPLICATION_USER /app
 
 USER $APPLICATION_USER
 
-COPY --from=BUILD_IMAGE /home/source/java/build/libs/registration-history-service.jar /app/registration-history-service.jar
+COPY --from=BUILD_IMAGE /home/source/java/build/libs/registration-history-service-1.0.0.jar /app/registration-history-service-1.0.0.jar
 WORKDIR /app
 
-CMD ["java", "-server", "-jar", "registration-history-service.jar"]
+CMD ["java", "-server", "-jar", "registration-history-service-1.0.0.jar"]

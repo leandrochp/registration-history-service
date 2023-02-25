@@ -10,7 +10,7 @@ Essa API foi desenvolvida com:
 - [Koin](https://insert-koin.io/)
 - [MongoDB](https://www.mongodb.com/)
 - [Docker](https://www.docker.com/)
-- [OpenApi 3](https://swagger.io/docs/specification/about/)
+- [OpenAPI 3](https://swagger.io/docs/specification/about/)
 
 ### Como executar
 - Verifique se você tem instalado o [docker-compose](https://docs.docker.com/compose/gettingstarted/) em seu computador.
@@ -31,7 +31,7 @@ Essa API foi desenvolvida com:
 - Testes de componente para o contrato e respostas http esperadas.
 
 ### Documentação
-Abra o arquivo spec.yml na raiz do projeto em [abrir API na web](https://editor.swagger.io/).
+Abra o arquivo spec.yml na raiz do projeto em [OpenAPI na web](https://editor.swagger.io/).
 
 ### Decisões de projeto
 ![DDD Decisão de projeto](ddd-registration-history-service.jpg)
