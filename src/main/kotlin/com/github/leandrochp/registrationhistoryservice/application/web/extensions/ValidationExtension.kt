@@ -1,6 +1,8 @@
 package com.github.leandrochp.registrationhistoryservice.application.web.extensions
 
 import com.github.leandrochp.registrationhistoryservice.application.web.validators.Validation
+import br.com.caelum.stella.validation.CPFValidator
+import br.com.caelum.stella.validation.InvalidStateException
 
 fun <T> Validation<T>.isNull(): Validation<T> {
     if (this.fieldValue == null) {
@@ -21,5 +23,16 @@ fun Validation<Int>.isNullOrNegative(): Validation<Int> {
     this.fieldValue.takeIf { it < zero }?.run {
         errorMessageList.add("must not be null or a negative number.")
     }
+    return this
+}
+
+fun Validation<String>.isInvalidCPF(): Validation<String> {
+    try {
+        val validator = CPFValidator(false)
+        validator.assertValid(this.fieldValue)
+    } catch (e: InvalidStateException) {
+        errorMessageList.add("the CPF is invalid.")
+    }
+
     return this
 }

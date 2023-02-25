@@ -8,4 +8,5 @@ interface RegistryHistoryRepository {
     fun findById(id: String): RegistryHistory?
     fun findByFirstName(firstName: String): List<RegistryHistory>
     fun findByLastName(lastName: String): List<RegistryHistory>
+    fun findByDocument(document: String): RegistryHistory?
 }
