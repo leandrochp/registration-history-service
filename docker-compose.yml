@@ -12,7 +12,7 @@ services:
   depends_on:
     - mongodb
   networks:
-    - partner-network
+    - registration-history-network
 
   mongodb:
     image: mongo
@@ -27,9 +27,9 @@ services:
     volumes:
       - ./src/resources/db/V1__create_user.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
-      - partner-network
+      - registration-history-network
     command: ["--bind_ip_all"]
 
 networks:
-  partner-network:
+  registration-history-network:
     driver: bridge
