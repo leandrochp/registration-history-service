@@ -3,16 +3,16 @@ version: '3.1'
 services:
 
   registration-history-service:
-  build: .
-  restart: always
-  container_name: registration-history-service
-  ports:
-    - 7000:7000
-  working_dir: /app
-  depends_on:
-    - mongodb
-  networks:
-    - registration-history-network
+    build: .
+    restart: always
+    container_name: registration-history-service
+    ports:
+      - 7000:7000
+    working_dir: /app
+    depends_on:
+      - mongodb
+    networks:
+      - registration-history-network
 
   mongodb:
     image: mongo
