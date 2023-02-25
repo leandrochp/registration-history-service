@@ -1,10 +1,13 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.File
+import java.io.FileInputStream
+import java.util.Properties
+import java.io.InputStreamReader
 
 plugins {
-  kotlin ("jvm") version "1.7.21"
   application
+  kotlin("jvm") version "1.7.21"
   id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
@@ -18,14 +21,10 @@ repositories {
 val vertxVersion = "4.3.8"
 val junitJupiterVersion = "5.9.1"
 
-val mainVerticleName = "com.github.leandrochp.registrationhistoryservice.application.Main"
-val launcherClassName = "io.vertx.core.Launcher"
-
-val watchForChange = "src/**/*"
-val doOnChange = "${projectDir}/gradlew classes"
+val mainPkgAndClass = "com.github.leandrochp.registrationhistoryservice.application.Main"
 
 application {
-  mainClass.set(mainVerticleName)
+  mainClass.set(mainPkgAndClass)
 }
 
 dependencies {
@@ -61,18 +60,26 @@ compileKotlin.kotlinOptions.jvmTarget = "11"
 tasks.withType<ShadowJar> {
   archiveClassifier.set("fat")
   manifest {
-    attributes(mapOf("Main-Verticle" to mainVerticleName))
+    attributes(mapOf("Main-Class" to mainPkgAndClass))
   }
   mergeServiceFiles()
 }
 
 tasks.withType<Test> {
   useJUnitPlatform()
-  testLogging {
-    events = setOf(PASSED, SKIPPED, FAILED)
-  }
 }
 
 tasks.withType<JavaExec> {
-  args = listOf("run", mainVerticleName, "--redeploy=$watchForChange", "--launcher-class=$launcherClassName", "--on-redeploy=$doOnChange")
+  loadEnv(environment, file("local.env"))
+}
+
+fun loadEnv(environment: MutableMap<String, Any>, file: File) {
+  val properties = Properties()
+  InputStreamReader(FileInputStream(file), Charsets.UTF_8).use {
+    properties.load(it)
+  }.also {
+    properties.forEach { key, value ->
+      environment[key.toString()] = value
+    }
+  }
 }
