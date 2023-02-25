@@ -8,6 +8,7 @@ fun RegistryHistoryRequest.toModel() =
     RegistryHistory(
         firstName = this.firstName,
         lastName = this.lastName,
+        document = this.document,
         age = this.age,
         email = this.email,
         address = Address(
