@@ -19,7 +19,11 @@ val databaseModules = module {
     }
 
     single<RegistryHistoryRepository> {
-        MongoDbRegistryHistoryRepository(get(), configJsonMapper())
+        MongoDbRegistryHistoryRepository(
+            get(),
+            get<EnvironmentVariablesConfig>().databaseName,
+            configJsonMapper()
+        )
     }
 
 }
