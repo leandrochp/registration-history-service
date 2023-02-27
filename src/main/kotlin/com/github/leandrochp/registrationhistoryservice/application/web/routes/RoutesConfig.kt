@@ -1,13 +1,11 @@
 package com.github.leandrochp.registrationhistoryservice.application.web.routes
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.leandrochp.registrationhistoryservice.application.web.constants.APPLICATION_JSON_CHARSET_UTF_8
 import com.github.leandrochp.registrationhistoryservice.application.web.constants.CONTENT_TYPE
 import com.github.leandrochp.registrationhistoryservice.application.web.controllers.HealthCheckController
 import com.github.leandrochp.registrationhistoryservice.application.web.controllers.RegistrationHistoryController
-import com.github.leandrochp.registrationhistoryservice.domain.exceptions.InvalidRequestException
 import com.github.leandrochp.registrationhistoryservice.domain.log.LoggableClass
 import io.netty.handler.codec.http.HttpResponseStatus
 import io.vertx.core.Vertx
@@ -36,16 +34,7 @@ object RoutesConfig : KoinComponent, LoggableClass() {
 
         router.run {
             post("/registers").handler {
-                val response = try {
-                    registryHistoryController.save(objectMapper.readValue(it.body().asString()))
-                } catch (ex: MissingKotlinParameterException) {
-                    logger.error(ex.localizedMessage).also {
-                        throw InvalidRequestException(
-                            "Invalid request missing parameter in request.",
-                            details = mapOf("error" to listOf(ex.localizedMessage))
-                        )
-                    }
-                }
+                val response = registryHistoryController.save(objectMapper.readValue(it.body().asString()))
                 it.response()
                     .setStatusCode(HttpResponseStatus.CREATED.code())
                     .putHeader(CONTENT_TYPE, APPLICATION_JSON_CHARSET_UTF_8)
