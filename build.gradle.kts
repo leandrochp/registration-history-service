@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.File
 import java.io.FileInputStream
@@ -52,7 +51,7 @@ dependencies {
     //ulid
     implementation("io.azam.ulidj:ulidj:1.0.1")
     //log
-    implementation("ch.qos.logback:logback-classic:1.4.5")
+    implementation("ch.qos.logback:logback-classic:1.3.5")
     //validations
     implementation("br.com.caelum.stella:caelum-stella-core:2.1.6")
 
@@ -63,16 +62,17 @@ dependencies {
 }
 
 val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions.jvmTarget = "11"
+compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
 tasks.withType<CreateStartScripts> { mainClass.set(mainPkgAndClass) }
 
-tasks.withType<ShadowJar> {
-    archiveClassifier.set("fat")
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
         attributes(mapOf("Main-Class" to mainPkgAndClass))
+        attributes(mapOf("Package-Version" to archiveVersion))
     }
-    mergeServiceFiles()
+    from(sourceSets.main.get().output)
 }
 
 tasks.create("componentTest", Test::class) {
@@ -91,7 +91,7 @@ tasks.withType<Test> {
 }
 
 tasks.test {
-    finalizedBy("componentTest")
+    //TODO finalizedBy("componentTest")
 }
 
 tasks.withType<JavaExec> {

@@ -1,1 +1,1 @@
-rootProject.name = "regsitration-history-service"
+rootProject.name = "registration-history-service"

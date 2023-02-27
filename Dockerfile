@@ -18,7 +18,14 @@ RUN chown -R $APPLICATION_USER /app
 
 USER $APPLICATION_USER
 
-COPY --from=BUILD_IMAGE /home/source/java/build/libs/registration-history-service-1.0.0.jar /app/registration-history-service-1.0.0.jar
+COPY --from=BUILD_IMAGE /home/source/java/build/libs/registration-history-service-1.0.0-all.jar /app/registration-history-service-1.0.0.jar
 WORKDIR /app
 
-CMD ["java", "-server", "-jar", "registration-history-service-1.0.0.jar"]
+ENV SERVER_PORT=7000
+ENV ENVIRONMENT_NAME=DEV
+ENV DATABASE_HOST=localhost
+ENV DATABASE_NAME=registration_history_service
+ENV DATABASE_AUTH_USER=registry
+ENV DATABASE_AUTH_PASSWORD=passw0rd
+
+CMD ["java", "-jar", "registration-history-service-1.0.0.jar"]
