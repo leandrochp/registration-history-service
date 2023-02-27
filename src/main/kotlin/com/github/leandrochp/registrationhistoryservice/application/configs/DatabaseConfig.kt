@@ -2,9 +2,7 @@ package com.github.leandrochp.registrationhistoryservice.application.configs
 
 import com.github.leandrochp.registrationhistoryservice.domain.log.LoggableClass
 import com.mongodb.MongoClient
-import com.mongodb.MongoClientOptions
-import com.mongodb.MongoCredential
-import com.mongodb.ServerAddress
+import com.mongodb.MongoClientURI
 
 object DatabaseConfig : LoggableClass() {
 
@@ -13,13 +11,12 @@ object DatabaseConfig : LoggableClass() {
         database: String,
         userName: String,
         password: String
-    ): MongoClient {
-        logger.debug("Connection on MongoDB...")
-
-        val serverAddress = ServerAddress(host)
-        val credentials = MongoCredential.createCredential(userName, database, password.toCharArray())
-
-        return MongoClient(serverAddress, credentials, MongoClientOptions.builder().build())
+    ): MongoClient =
+        logger.debug("Connection on MongoDB...").let {
+            val mongoClientURI = MongoClientURI(
+                "mongodb://$userName:$password@$host:27017/$database?authSource=admin"
+            )
+            MongoClient(mongoClientURI)
     }
 
 }
