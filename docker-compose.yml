@@ -24,7 +24,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./src/resources/db/V1__create_user.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./src/resources/db/V1__create_user.js:/docker-entrypoint-initdb.d/V1__create_user.js:ro
     networks:
       - registration-network
     command: ["--bind_ip_all"]

@@ -1,4 +1,3 @@
-print('Started adding the users');
 db = db.getSiblingDB('registration_history_service');
 db.createUser({
     user: 'registry',
@@ -8,4 +7,3 @@ db.createUser({
         db: 'registration_history_service'
     }]
 });
-print('End adding the user roles.');
