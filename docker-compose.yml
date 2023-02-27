@@ -1,8 +1,7 @@
-version: '3.1'
+version: '3.7'
 
 services:
-
-  registration-history-service:
+  api_service:
     build: .
     restart: always
     container_name: registration-history-service
@@ -10,11 +9,11 @@ services:
       - 7000:7000
     working_dir: /app
     depends_on:
-      - mongodb
+      - mongo_db
     networks:
-      - registration-history-network
+      - registration-network
 
-  mongodb:
+  mongo_db:
     image: mongo
     container_name: mongodb
     restart: always
@@ -27,9 +26,9 @@ services:
     volumes:
       - ./src/resources/db/V1__create_user.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
-      - registration-history-network
+      - registration-network
     command: ["--bind_ip_all"]
 
 networks:
-  registration-history-network:
+  registration-network:
     driver: bridge
