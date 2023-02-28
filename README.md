@@ -40,9 +40,9 @@ O DDD (Domain Driven Design) foi utilizado para estruturar o microsserviço util
  - Domínio e
  - Infraestrutura 
 
-A camada de aplicação por receber as requisições, a domínio para armazenar a lógica de negócio e a camada de infraestrutura para persistência dos dados.
+A camada de aplicação por receber as requisições, a domínio por armazenar a lógica de negócio e a camada de infraestrutura para persistência dos dados.
 
-A requisição é passada para a interface do serviço do domínio, que converte a solicitação no objeto de domínio, que por sua vez possui todos os requisitos de negócios.
+A requisição é passada para a interface do serviço do domínio, que converte a solicitação no objeto de domínio. A implementação do serviço possui todos os requisitos de negócios.
 Se uma exceção for lançada, este próprio serviço a trata e retorna o resultado. A camada de aplicação é responsável por convertê-la em uma resposta mais apresentável.
 
 A camada de domínio imprime o que está acontecendo nos logs, que podem fornecer a solução de problemas no ambiente de produção.
