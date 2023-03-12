@@ -26,7 +26,7 @@ Essa API foi desenvolvida com:
 ```
   $ curl --location --request GET 'http://localhost:7000/health-check'
 ```
-### Testes de componentes em construção
+### Testes
 - Testes unitários para regras de negócio e
 - Testes de componente para o contrato e respostas http esperadas.
 
