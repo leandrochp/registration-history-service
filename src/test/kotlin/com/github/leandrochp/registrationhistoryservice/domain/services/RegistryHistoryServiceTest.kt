@@ -47,7 +47,7 @@ class RegistryHistoryServiceTest {
     }
 
     @Test
-    fun `should return an existent registry history when the id informed registered`() {
+    fun `should return an existent registry history when the id informed`() {
         val id = "123"
         every { repositoryMock.findById(id) } returns registryHistoryMock
 
@@ -59,7 +59,7 @@ class RegistryHistoryServiceTest {
     }
 
     @Test
-    fun `should throws an exception when there is not a registry history when the id informed registered`() {
+    fun `should throws an exception when there is not a registry history when the id informed`() {
         val id = "123"
         every { repositoryMock.findById(id) } returns null
 
