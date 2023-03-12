@@ -11,8 +11,10 @@ class EnvironmentVariablesConfig(
 ) {
 
     val serverPort = configuration[SERVER_PORT]
+    val environmentName = configuration[ENVIRONMENT_NAME]
 
     val databaseHost = configuration[DATABASE_HOST]
+    val databasePort = configuration[DATABASE_PORT]
     val databaseName = configuration[DATABASE_NAME]
     val databaseAuthUser = configuration[DATABASE_AUTH_USER]
     val databaseAuthPassword = configuration[DATABASE_AUTH_PASSWORD]
@@ -20,8 +22,10 @@ class EnvironmentVariablesConfig(
     companion object {
 
         private val SERVER_PORT by intType
+        private val ENVIRONMENT_NAME by stringType
 
         private val DATABASE_HOST by stringType
+        private val DATABASE_PORT by intType
         private val DATABASE_NAME by stringType
         private val DATABASE_AUTH_USER by stringType
         private val DATABASE_AUTH_PASSWORD by stringType

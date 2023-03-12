@@ -8,15 +8,16 @@ object DatabaseConfig : LoggableClass() {
 
     fun connect(
         host: String,
+        port: Int,
         database: String,
         userName: String,
         password: String
     ): MongoClient =
         logger.debug("Connection on MongoDB...").let {
             val mongoClientURI = MongoClientURI(
-                "mongodb://$userName:$password@$host:27017/$database?authSource=admin"
+                "mongodb://$userName:$password@$host:$port/$database?authSource=admin"
             )
             MongoClient(mongoClientURI)
-    }
+        }
 
 }
