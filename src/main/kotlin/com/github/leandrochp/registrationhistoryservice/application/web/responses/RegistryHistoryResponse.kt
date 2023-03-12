@@ -7,6 +7,7 @@ data class RegistryHistoryResponse(
     val id: String,
     @JsonProperty("first_name") val firstName: String,
     @JsonProperty("last_name") val lastName: String,
+    val document: String,
     val age: Int,
     val email: String,
     val address: AddressResponse
@@ -16,6 +17,7 @@ data class RegistryHistoryResponse(
         id = registryHistory.id!!,
         firstName = registryHistory.firstName,
         lastName = registryHistory.lastName,
+        document = registryHistory.document,
         age = registryHistory.age,
         email = registryHistory.email,
         address = AddressResponse(

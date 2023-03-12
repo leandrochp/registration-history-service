@@ -1,7 +1,6 @@
 package com.github.leandrochp.registrationhistoryservice.application.web.controllers
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.leandrochp.registrationhistoryservice.application.web.extensions.onlyNumbersAndLetters
 import com.github.leandrochp.registrationhistoryservice.application.web.extensions.toModel
 import com.github.leandrochp.registrationhistoryservice.application.web.requests.RegistryHistoryRequest
 import com.github.leandrochp.registrationhistoryservice.application.web.responses.RegistryHistoryResponse
@@ -18,14 +17,12 @@ class RegistrationHistoryController(
 
     fun save(requestHistoryRequest: RegistryHistoryRequest): RegistryHistoryResponse {
         logger.debug(
-            "A new request to create a new registry history has been received: ${getJsonString(requestHistoryRequest)}"
+            "A new request to create a new registry history " +
+                    "has been received: ${getJsonString(requestHistoryRequest)}"
         )
-        val request = requestHistoryRequest.copy(
-            document = requestHistoryRequest.document.onlyNumbersAndLetters()
-        )
-        validateRequest(request)
+        validateRequest(requestHistoryRequest)
 
-        return RegistryHistoryResponse(registryHistoryService.save(request.toModel())).also {
+        return RegistryHistoryResponse(registryHistoryService.save(requestHistoryRequest.toModel())).also {
             logger.debug(
                 "Replying the follow json response ${getJsonString(it)} in create registry history endpoint."
             )

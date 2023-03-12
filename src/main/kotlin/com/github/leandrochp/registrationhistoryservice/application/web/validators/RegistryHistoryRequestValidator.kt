@@ -1,9 +1,6 @@
 package com.github.leandrochp.registrationhistoryservice.application.web.validators
 
-import com.github.leandrochp.registrationhistoryservice.application.web.extensions.isInvalidCPF
-import com.github.leandrochp.registrationhistoryservice.application.web.extensions.isNull
-import com.github.leandrochp.registrationhistoryservice.application.web.extensions.isNullOrBlank
-import com.github.leandrochp.registrationhistoryservice.application.web.extensions.isNullOrNegative
+import com.github.leandrochp.registrationhistoryservice.application.web.extensions.*
 import com.github.leandrochp.registrationhistoryservice.application.web.requests.RegistryHistoryRequest
 import org.koin.core.component.KoinComponent
 
@@ -17,7 +14,7 @@ class RegistryHistoryRequestValidator : KoinComponent, Validator<RegistryHistory
             errorList.add(Validation("first_name", this.firstName).isNullOrBlank())
             errorList.add(Validation("last_name", this.lastName).isNullOrBlank())
             errorList.add(Validation("document", this.document).isNullOrBlank())
-            errorList.add(Validation("document", this.document).isInvalidCPF())
+            errorList.add(Validation("document", this.document.onlyNumbersAndLetters()).isInvalidCPF())
             errorList.add(Validation("age", this.age).isNullOrNegative())
             errorList.add(Validation("email", this.email).isNullOrBlank())
             errorList.add(Validation("address", this.address).isNull())
