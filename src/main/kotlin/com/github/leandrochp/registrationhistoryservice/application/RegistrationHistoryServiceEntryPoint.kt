@@ -1,28 +1,25 @@
 package com.github.leandrochp.registrationhistoryservice.application
 
 import com.github.leandrochp.registrationhistoryservice.application.configs.EnvironmentVariablesConfig
-import com.github.leandrochp.registrationhistoryservice.application.modules.loadModules
+import com.github.leandrochp.registrationhistoryservice.application.modules.KoinModules
 import com.github.leandrochp.registrationhistoryservice.application.web.handlers.FailureHandlerConfig
 import com.github.leandrochp.registrationhistoryservice.application.web.routes.RoutesConfig
 import com.github.leandrochp.registrationhistoryservice.domain.log.LoggableClass
 import io.vertx.core.Vertx
 import io.vertx.core.VertxOptions
+import io.vertx.core.http.HttpServer
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.util.concurrent.TimeUnit
 
-object Application : KoinComponent, LoggableClass() {
+object RegistrationHistoryServiceEntryPoint : KoinComponent, LoggableClass() {
 
     private val environmentVariablesConfig: EnvironmentVariablesConfig by inject()
     private val routesConfig: RoutesConfig by inject()
     private val failureHandlerConfig: FailureHandlerConfig by inject()
 
-    fun start() {
-        loadModules()
-        loadServer()
-    }
-
-    private fun loadServer() {
+    fun start(): HttpServer {
+        KoinModules.start()
         val options = configureOptions()
         val vertx = Vertx.vertx(options)
 
@@ -30,7 +27,7 @@ object Application : KoinComponent, LoggableClass() {
         val port = environmentVariablesConfig.serverPort
         val router = configureRoutes(vertx)
 
-        server.requestHandler(router).listen(port) {
+        return server.requestHandler(router).listen(port) {
             if (it.succeeded()) {
                 logger.info("registration-history-service started on port $port")
             } else {
