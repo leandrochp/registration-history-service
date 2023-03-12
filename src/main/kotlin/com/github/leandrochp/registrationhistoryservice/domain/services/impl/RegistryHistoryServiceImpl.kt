@@ -45,7 +45,7 @@ class RegistryHistoryServiceImpl(
         registryHistoryRepository.findByLastName(lastName).run {
             if (isEmpty())
                 throw RegistryHistoryNotFoundException("There were not found registry histories " +
-                        "with the first name: [$lastName].")
+                        "with the last name: [$lastName].")
             return this
         }
     }
