@@ -31,6 +31,10 @@ sourceSets {
     }
 }
 
+val componentTestImplementation: Configuration by configurations.getting {
+    extendsFrom(configurations.implementation.get())
+}
+
 dependencies {
     //vertx
     implementation(platform("io.vertx:vertx-stack-depchain:$vertxVersion"))
@@ -58,6 +62,12 @@ dependencies {
     testImplementation("io.mockk:mockk:1.12.4")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
     testImplementation("org.assertj:assertj-core:3.22.0")
+
+    componentTestImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
+    componentTestImplementation("org.assertj:assertj-core:3.22.0")
+    componentTestImplementation("de.bwaldvogel:mongo-java-server-memory-backend:1.36.0")
+    componentTestImplementation("io.rest-assured:kotlin-extensions:4.4.0")
+    componentTestImplementation("org.skyscreamer:jsonassert:1.5.0")
 
 }
 
@@ -91,7 +101,7 @@ tasks.withType<Test> {
 }
 
 tasks.test {
-    //TODO finalizedBy("componentTest")
+    finalizedBy("componentTest")
 }
 
 tasks.withType<JavaExec> {
