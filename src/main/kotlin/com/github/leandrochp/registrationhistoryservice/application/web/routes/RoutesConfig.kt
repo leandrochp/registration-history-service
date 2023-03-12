@@ -65,7 +65,7 @@ object RoutesConfig : KoinComponent, LoggableClass() {
                     .end(objectMapper.writeValueAsString(response))
             }
             get("/registers/last-name/:lastname").handler {
-                val lastName = it.pathParam("lastName")
+                val lastName = it.pathParam("lastname")
                 val response = registryHistoryController.findByLastName(lastName)
 
                 it.response()
