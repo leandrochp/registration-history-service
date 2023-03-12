@@ -1,0 +1,10 @@
+{
+  "api_error":"INVALID_REQUEST",
+  "message":"There are some invalids fields in request.",
+  "details":{
+    "document":[
+      "must not be empty or null.",
+      "the CPF is invalid."
+    ]
+  }
+}

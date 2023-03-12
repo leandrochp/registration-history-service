@@ -1,0 +1,12 @@
+{
+  "first_name": "John",
+  "last_name": "Wick",
+  "document": "277.014.160-05",
+  "age": 44,
+  "email": "babayaga@hotelcontinental.com",
+  "address": {
+    "street": "121 Lower Horseshoe, Mill Neck",
+    "city": "Long Island",
+    "code": "11765"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "api_error": "REGISTRY_HISTORY_REGISTERED",
+  "message": "There is a registry history with the follow document: [%s] already registered.",
+  "details": {}
+}
