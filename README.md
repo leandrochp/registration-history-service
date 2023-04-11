@@ -20,7 +20,7 @@ Essa API foi desenvolvida com:
 ```
 - Execute o seguinte comando na raiz do projeto:
 ```
-  $ docker-compose up
+  $ docker-compose up -d
 ```
 - Para testar, execute o seguinte comando no terminal:
 ```
