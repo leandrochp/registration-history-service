@@ -13,19 +13,16 @@ Essa API foi desenvolvida com:
 - [OpenAPI 3](https://swagger.io/docs/specification/about/)
 
 ### Como executar
-- Verifique se você tem instalado o [docker-compose](https://docs.docker.com/compose/gettingstarted/) em seu computador.
+Verifique se você tem instalado o [docker-compose](https://docs.docker.com/compose/gettingstarted/) em seu computador.
 - Execute o seguinte comando na raiz do projeto:
 ```
-  $ docker-compose build
-```
-- Execute o seguinte comando na raiz do projeto:
-```
-  $ docker-compose up -d
+  $ docker-compose up --build -d
 ```
 - Para testar, execute o seguinte comando no terminal:
 ```
-  $ curl --location --request GET 'http://localhost:7000/health-check'
+  $ curl -X GET 'http://localhost:7000/health-check'
 ```
+
 ### Testes
 - Testes unitários para regras de negócio e
 - Testes de componente para o contrato e respostas http esperadas.
