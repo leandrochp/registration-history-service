@@ -1,13 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.io.File
 import java.io.FileInputStream
-import java.util.Properties
 import java.io.InputStreamReader
+import java.util.Properties
 
 plugins {
     application
     kotlin("jvm") version "1.7.21"
-    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "com.github.leandrochp.registrationhistoryservice"
@@ -81,6 +79,10 @@ tasks.jar {
     manifest {
         attributes(mapOf("Main-Class" to mainPkgAndClass))
         attributes(mapOf("Package-Version" to archiveVersion))
+    }
+
+    from(configurations.runtimeClasspath.get().map { if (!it.isDirectory) zipTree(it) else it }) {
+        exclude("META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA")
     }
     from(sourceSets.main.get().output)
 }
