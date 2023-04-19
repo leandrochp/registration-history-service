@@ -1,4 +1,4 @@
-FROM gradle:7.3.2-jdk8 AS BUILD_IMAGE
+FROM gradle:6.9.1-jdk8-hotspot AS BUILD_IMAGE
 COPY . /home/source/java
 WORKDIR /home/source/java
 
@@ -18,7 +18,7 @@ RUN chown -R $APPLICATION_USER /app
 
 USER $APPLICATION_USER
 
-COPY --from=BUILD_IMAGE /home/source/java/build/libs/registration-history-service-1.0.0-all.jar /app/registration-history-service-1.0.0.jar
+COPY --from=BUILD_IMAGE /home/source/java/build/libs/registration-history-service-1.0.0.jar /app/registration-history-service-1.0.0.jar
 WORKDIR /app
 
 ENV SERVER_PORT=7000
