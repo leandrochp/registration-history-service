@@ -1,7 +1,7 @@
 package com.github.leandrochp.registrationhistoryservice.infrastructure.repositories.extensions
 
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.Address
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.RegistryHistory
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.Address
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.RegistryHistory
 import com.github.leandrochp.registrationhistoryservice.infrastructure.repositories.entities.RegistryHistoryEntity
 
 fun RegistryHistoryEntity.toModel() =

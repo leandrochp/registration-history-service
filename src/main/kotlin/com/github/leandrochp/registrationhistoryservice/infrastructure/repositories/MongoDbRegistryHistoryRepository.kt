@@ -3,7 +3,7 @@ package com.github.leandrochp.registrationhistoryservice.infrastructure.reposito
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.leandrochp.registrationhistoryservice.domain.log.LoggableClass
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.RegistryHistory
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.RegistryHistory
 import com.github.leandrochp.registrationhistoryservice.domain.repositories.RegistryHistoryRepository
 import com.github.leandrochp.registrationhistoryservice.infrastructure.repositories.entities.AddressEntity
 import com.github.leandrochp.registrationhistoryservice.infrastructure.repositories.entities.RegistryHistoryEntity

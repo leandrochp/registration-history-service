@@ -2,7 +2,7 @@ package com.github.leandrochp.registrationhistoryservice.domain.services.impl
 
 import com.github.leandrochp.registrationhistoryservice.domain.exceptions.RegistryHistoryAlreadyRegisteredException
 import com.github.leandrochp.registrationhistoryservice.domain.exceptions.RegistryHistoryNotFoundException
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.RegistryHistory
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.RegistryHistory
 import com.github.leandrochp.registrationhistoryservice.domain.repositories.RegistryHistoryRepository
 import com.github.leandrochp.registrationhistoryservice.domain.services.RegistryHistoryService
 

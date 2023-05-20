@@ -1,8 +1,8 @@
 package com.github.leandrochp.registrationhistoryservice.application.web.extensions
 
 import com.github.leandrochp.registrationhistoryservice.application.web.requests.RegistryHistoryRequest
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.Address
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.RegistryHistory
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.Address
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.RegistryHistory
 
 fun RegistryHistoryRequest.toModel() =
     RegistryHistory(

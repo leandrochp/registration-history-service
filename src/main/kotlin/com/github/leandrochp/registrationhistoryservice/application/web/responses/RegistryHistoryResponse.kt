@@ -1,7 +1,7 @@
 package com.github.leandrochp.registrationhistoryservice.application.web.responses
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.RegistryHistory
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.RegistryHistory
 
 data class RegistryHistoryResponse(
     val id: String,

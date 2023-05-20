@@ -1,7 +1,7 @@
-package com.github.leandrochp.registrationhistoryservice.utils.mocks
+package com.github.leandrochp.registrationhistoryservice.domain.registrationhistory
 
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.Address
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.RegistryHistory
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.Address
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.RegistryHistory
 
 object RegistryHistoryMock {
 

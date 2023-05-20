@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.leandrochp.registrationhistoryservice.application.web.validators.RegistryHistoryRequestValidator
 import com.github.leandrochp.registrationhistoryservice.domain.exceptions.InvalidRequestException
 import com.github.leandrochp.registrationhistoryservice.domain.services.RegistryHistoryService
-import com.github.leandrochp.registrationhistoryservice.utils.mocks.RegistryHistoryMock
-import com.github.leandrochp.registrationhistoryservice.utils.mocks.RegistryHistoryRequestMock
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.RegistryHistoryMock
+import com.github.leandrochp.registrationhistoryservice.application.web.requests.RegistryHistoryRequestMock
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

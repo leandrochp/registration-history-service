@@ -1,6 +1,6 @@
 package com.github.leandrochp.registrationhistoryservice.domain.services
 
-import com.github.leandrochp.registrationhistoryservice.domain.registryhistory.RegistryHistory
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.RegistryHistory
 
 interface RegistryHistoryService {
     fun save(registryHistory: RegistryHistory): RegistryHistory

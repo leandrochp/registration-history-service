@@ -1,4 +1,4 @@
-package com.github.leandrochp.registrationhistoryservice.utils.mocks
+package com.github.leandrochp.registrationhistoryservice.application.web.requests
 
 import com.github.leandrochp.registrationhistoryservice.application.web.requests.AddressRequest
 import com.github.leandrochp.registrationhistoryservice.application.web.requests.RegistryHistoryRequest

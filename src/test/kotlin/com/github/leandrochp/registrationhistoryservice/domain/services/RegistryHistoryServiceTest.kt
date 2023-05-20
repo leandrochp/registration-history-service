@@ -4,7 +4,7 @@ import com.github.leandrochp.registrationhistoryservice.domain.exceptions.Regist
 import com.github.leandrochp.registrationhistoryservice.domain.exceptions.RegistryHistoryNotFoundException
 import com.github.leandrochp.registrationhistoryservice.domain.repositories.RegistryHistoryRepository
 import com.github.leandrochp.registrationhistoryservice.domain.services.impl.RegistryHistoryServiceImpl
-import com.github.leandrochp.registrationhistoryservice.utils.mocks.RegistryHistoryMock
+import com.github.leandrochp.registrationhistoryservice.domain.registrationhistory.RegistryHistoryMock
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

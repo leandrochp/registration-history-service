@@ -1,4 +1,4 @@
-package com.github.leandrochp.registrationhistoryservice.domain.registryhistory
+package com.github.leandrochp.registrationhistoryservice.domain.registrationhistory
 
 data class RegistryHistory(
     val id: String? = null,
