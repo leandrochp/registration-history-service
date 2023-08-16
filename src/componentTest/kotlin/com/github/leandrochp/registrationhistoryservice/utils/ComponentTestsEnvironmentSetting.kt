@@ -1,7 +1,7 @@
 package com.github.leandrochp.registrationhistoryservice.utils
 
 import com.github.leandrochp.registrationhistoryservice.application.RegistrationHistoryServiceEntryPoint
-import com.github.leandrochp.registrationhistoryservice.application.modules.KoinModules
+import com.github.leandrochp.registrationhistoryservice.application.module.KoinModules
 import com.github.leandrochp.registrationhistoryservice.domain.log.LoggableClass
 import io.vertx.core.http.HttpServer
 import java.util.concurrent.locks.ReentrantLock

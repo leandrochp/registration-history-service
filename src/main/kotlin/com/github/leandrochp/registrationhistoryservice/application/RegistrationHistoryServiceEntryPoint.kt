@@ -1,9 +1,9 @@
 package com.github.leandrochp.registrationhistoryservice.application
 
-import com.github.leandrochp.registrationhistoryservice.application.configs.EnvironmentVariablesConfig
-import com.github.leandrochp.registrationhistoryservice.application.modules.KoinModules
-import com.github.leandrochp.registrationhistoryservice.application.web.handlers.FailureHandlerConfig
-import com.github.leandrochp.registrationhistoryservice.application.web.routes.RoutesConfig
+import com.github.leandrochp.registrationhistoryservice.application.config.EnvironmentVariablesConfig
+import com.github.leandrochp.registrationhistoryservice.application.module.KoinModules
+import com.github.leandrochp.registrationhistoryservice.application.web.handler.FailureHandlerConfig
+import com.github.leandrochp.registrationhistoryservice.application.web.route.RoutesConfig
 import com.github.leandrochp.registrationhistoryservice.domain.log.LoggableClass
 import io.vertx.core.Vertx
 import io.vertx.core.VertxOptions
