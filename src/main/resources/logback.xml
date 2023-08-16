@@ -7,10 +7,10 @@
     </appender>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%d{dd-MM-yyyy HH:mm:ss.SSS}] - %msg%n</pattern>
+            <pattern>[%d{dd-MM-yyyy HH:mm:ss.SSS}] [%thread] [%-5level] - %msg%n</pattern>
         </encoder>
     </appender>
-    <root level="trace">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>
